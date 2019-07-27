@@ -25,9 +25,15 @@ export class NewTaskPage implements OnInit {
     ],
     'description': [      
       { type: 'minlength', message: 'La descripcion debe tener al menos 25 caracteres.' }
-    ]
-   };
- 
+    ],
+
+    'tramitador': [
+      { type: 'required', message: 'El tramitador ha sido asignado' },
+    
+      
+    ],
+  }
+    
   
 
 
