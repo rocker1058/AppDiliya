@@ -59,5 +59,12 @@
 
 
     <ion-button class="submit-btn" expand="block" type="submit" [disabled]="!validations_form.valid">Asignar</ion-button>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.email">
+        <div class="error-message" *ngIf="validations_form.get('Tramitador').hasError(validation.type) && (validations_form.get('Tramitador').dirty || validations_form.get('Tramitador').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
   </form>
 </ion-content>
