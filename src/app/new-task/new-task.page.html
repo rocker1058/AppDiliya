@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Trámite bancario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div>
+    <ion-row no-padding>
+      <ion-col size="6" offset="3">
+        <img [src]="image" alt="this is the image"/>
+      </ion-col>
+    </ion-row>
+    <ion-row no-padding>
+      <ion-col size="6" offset="3">
+        
+      </ion-col>
+    </ion-row>
+  </div>
+  <form [formGroup]="validations_form" (ngSubmit)="onSubmit(validations_form.value)">
+    <ion-item>
+      <ion-label position="floating" color="primary">Entidad bancaria</ion-label>
+      <ion-input type="text" formControlName="title"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Descripción</ion-label>
+      <ion-input type="text" formControlName="description"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.email">
+        <div class="error-message" *ngIf="validations_form.get('description').hasError(validation.type) && (validations_form.get('description').dirty || validations_form.get('description').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Cantidad de dinero</ion-label>
+      <ion-input type="number" formControlName="dinero"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.dinero">
+        <div class="error-message" *ngIf="validations_form.get('dinero').hasError(validation.type) && (validations_form.get('dinero').dirty || validations_form.get('dinero').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+    
+    
+    <ion-item>
+      <ion-label position="floating" color="primary">Direccion de recogida</ion-label>
+      <ion-input type="text" formControlName="direccion"></ion-input>
+    </ion-item>
+
+
+    <ion-button class="submit-btn" expand="block" type="submit" [disabled]="!validations_form.valid">Solicitar</ion-button>
+  </form>
+</ion-content>
